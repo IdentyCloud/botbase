@@ -11,7 +11,7 @@ model Products {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   price       Float
-  category    String
+  category    String   @default("General")
   dimensions  String
   color       String
   weight      String

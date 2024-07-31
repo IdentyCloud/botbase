@@ -17,19 +17,24 @@ const index = pc.index("bot-base");
 const data = async (req, res, next) => {
   try {
     const file = await fs.readFile(process.cwd() + "/data.json", "utf8");
-    const { result } = JSON.parse(file);
-
-    console.log(result)
-
+    const result = JSON.parse(file);
+    
     for (const item of result) {
       const embedding = await getEmbedding(item);
 
       await prisma.$transaction(async (tx) => {
         const product = await tx.products.create({
           data: {
-            name: item.product.name,
-            price: parseFloat(item.product.price),
-            description: item.product.description,
+            name: item.name,
+            price: parseFloat(item.price),
+            category: item.category,
+            dimensions: item.dimensions,
+            color: item.color,
+            weight: item.weight,
+            brand: item.brand,
+            stock: parseInt(item.stock),
+            rating: parseFloat(item.rating),
+            description: item.description,
           },
         });
 
@@ -48,6 +53,7 @@ const data = async (req, res, next) => {
       message: "products imported correctly",
       data: result.length,
     });
+
   } catch (error) {
     console.error(error);
     return res.json({ error: "Internal server error" }, { status: 500 });
