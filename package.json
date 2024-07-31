@@ -1,0 +1,21 @@
+{
+  "name": "group.agency.botbase",
+  "version": "0.0.1",
+  "main": "src/app.js",
+  "author": "UveGroup",
+  "description": "UveGroup - ChatBot project IA",
+  "license": "ISC",
+  "scripts": {
+    "start": "node --env-file=.env src/app.js",
+    "dev": "node --env-file=.env --watch src/app.js"
+  },
+  "dependencies": {
+    "@pinecone-database/pinecone": "^3.0.0",
+    "@prisma/client": "^5.17.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "openai": "^4.47.1",
+    "tiktoken": "^1.0.15"
+  }
+}
