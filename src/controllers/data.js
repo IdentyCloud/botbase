@@ -19,8 +19,10 @@ const data = async (req, res, next) => {
     const file = await fs.readFile(process.cwd() + "/data.json", "utf8");
     const { result } = JSON.parse(file);
 
+    console.log(result)
+
     for (const item of result) {
-      const embedding = await getEmbedding(item.product);
+      const embedding = await getEmbedding(item);
 
       await prisma.$transaction(async (tx) => {
         const product = await tx.products.create({

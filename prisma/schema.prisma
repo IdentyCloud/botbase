@@ -11,6 +11,13 @@ model Products {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   price       Float
+  category    String
+  dimensions  String
+  color       String
+  weight      String
+  brand       String
+  stock       Int
+  rating      Float
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
