@@ -18,7 +18,7 @@ const data = async (req, res, next) => {
   try {
     const file = await fs.readFile(process.cwd() + "/data.json", "utf8");
     const result = JSON.parse(file);
-    
+
     for (const item of result) {
       const embedding = await getEmbedding(item);
 
@@ -53,11 +53,28 @@ const data = async (req, res, next) => {
       message: "products imported correctly",
       data: result.length,
     });
-
   } catch (error) {
     console.error(error);
     return res.json({ error: "Internal server error" }, { status: 500 });
   }
 };
 
-module.exports = { data };
+const report = async (req, res, next) => {
+  try {
+    const search = await prisma.search.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    res.json({
+      status: "success",
+      message: "search data",
+      data: search,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.json({ error: "Internal server error" }, { status: 500 });
+  }
+};
+
+module.exports = { data, report };
