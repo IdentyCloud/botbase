@@ -9,15 +9,14 @@ datasource db {
 
 model Products {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
   price       Float
-  category    String   @default("General")
-  dimensions  String
-  color       String
-  weight      String
-  brand       String
   stock       Int
-  rating      Float
+  material    String
+  category    String
+  gender      String
+  size        String
+  color       String
+  brand       String
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

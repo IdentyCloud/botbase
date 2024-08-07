@@ -25,15 +25,13 @@ const data = async (req, res, next) => {
       await prisma.$transaction(async (tx) => {
         const product = await tx.products.create({
           data: {
-            name: item.name,
             price: parseFloat(item.price),
-            category: item.category,
-            dimensions: item.dimensions,
-            color: item.color,
-            weight: item.weight,
-            brand: item.brand,
             stock: parseInt(item.stock),
-            rating: parseFloat(item.rating),
+            category: item.category,
+            gender: item.gender,
+            size: item.size,
+            color: item.color,
+            brand: item.brand,
             description: item.description,
           },
         });
