@@ -27,6 +27,7 @@ const data = async (req, res, next) => {
           data: {
             price: parseFloat(item.price),
             stock: parseInt(item.stock),
+            material: item.material,
             category: item.category,
             gender: item.gender,
             size: item.size,
